@@ -1,8 +1,12 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: incoming request
 on: [workflow_dispatch]
 jobs:
-  Explore-GitHub-Actions:
+  web-gateway:
     runs-on: ubuntu-latest
     steps:
-      - run: curl "https://enzi7dw4nd3b8.x.pipedream.net"
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.8.0
+      - run: node github-actions-gateway.mjs

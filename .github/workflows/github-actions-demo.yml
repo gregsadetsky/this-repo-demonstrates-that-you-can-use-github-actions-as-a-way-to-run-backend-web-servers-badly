@@ -9,7 +9,12 @@ jobs:
   web-gateway:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.8.0
+      - run: npm install
+      - name: call gateway with inputs
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: node github-actions-gateway.mjs

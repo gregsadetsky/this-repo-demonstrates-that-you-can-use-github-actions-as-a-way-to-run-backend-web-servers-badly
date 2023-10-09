@@ -14,5 +14,5 @@ jobs:
         with:
           node-version: 20.8.0
       - run: npm install
-      - run: ${{ toJSON(github.event.inputs) }} > request.json
+      - run: echo ${{ toJSON(github.event.inputs) }} > request.json
       - run: node github-actions-gateway.mjs

@@ -1,9 +1,10 @@
 import mainApp from "./app.js";
 import request from "supertest";
-import fs from "fs";
 
-const requestJson = JSON.parse(fs.readFileSync("request.json", "utf8"));
-console.log("requestJson", requestJson);
+// read env var 'GITHUB_CONTEXT' and un-json decode it
+const githubContext = JSON.parse(process.env.GITHUB_CONTEXT);
+const incomingRequest = githubContext.event.inputs.incomingRequest;
+console.log("incomingRequest", incomingRequest);
 
 const response = await request(mainApp).get("/").expect(200);
 

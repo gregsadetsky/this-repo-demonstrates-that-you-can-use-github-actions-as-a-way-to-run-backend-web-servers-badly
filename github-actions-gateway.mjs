@@ -1,14 +1,9 @@
 import mainApp from "./app.js";
 import request from "supertest";
-import core from "@actions/core";
+import fs from "fs";
 
-const incomingRequest = core.getInput("incomingRequest");
-console.log(
-  "incomingRequest",
-  incomingRequest,
-  "incomingRequest.length",
-  incomingRequest.length,
-);
+const requestJson = JSON.parse(fs.readFileSync("request.json", "utf8"));
+console.log("requestJson", requestJson);
 
 const response = await request(mainApp).get("/").expect(200);
 

@@ -1,9 +1,10 @@
 name: GitHub Actions Demo
 run-name: incoming request
-on: [workflow_dispatch]
-inputs:
-  incomingRequest:
-    description: "request payload"
+on:
+  workflow_dispatch:
+    inputs:
+      incomingRequest:
+        description: "request payload"
 jobs:
   web-gateway:
     runs-on: ubuntu-latest
